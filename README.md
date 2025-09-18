@@ -45,8 +45,15 @@ PaginFuneite1/
 ├── index.html          # Página principal
 ├── style.css           # Estilos CSS responsivos
 ├── script.js           # JavaScript para interactividad
-├── .github/workflows/  # GitHub Actions para deployment
-└── README.md           # Documentación
+├── .github/
+│   ├── workflows/      # GitHub Actions para deployment
+│   └── copilot-instructions.md
+├── docs/               # Documentación adicional
+│   ├── DEPLOYMENT_SUMMARY.md
+│   └── GITHUB_PAGES_SETUP.md
+├── .nojekyll          # Configuración GitHub Pages
+├── .gitignore         # Archivos ignorados por Git
+└── README.md          # Documentación principal
 ```
 
 ## 🚀 Instalación Local
