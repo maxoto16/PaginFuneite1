@@ -34,7 +34,9 @@ La página está optimizada para:
 
 ## 🌐 Ver en Vivo
 
-La página está desplegada en GitHub Pages: [Ver sitio web](https://maxoto16.github.io/PaginFuneite1/)
+La página está configurada para despliegue en GitHub Pages: [Ver sitio web](https://maxoto16.github.io/PaginFuneite1/)
+
+> **Nota**: El sitio se desplegará automáticamente una vez que se apruebe el workflow de GitHub Actions en la configuración del repositorio.
 
 ## 📂 Estructura del Proyecto
 
