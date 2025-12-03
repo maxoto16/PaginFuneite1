@@ -1,19 +1,50 @@
-si
-📘 Proyecto: Implementación de Algoritmos y Lista Dinámica en Java
+███████╗██╗     ██╗███████╗██╗         ██████╗  █████╗ ██╗██╗
+██╔════╝██║     ██║██╔════╝██║         ██╔══██╗██╔══██╗██║██║
+█████╗  ██║     ██║█████╗  ██║         ██████╔╝███████║██║██║
+██╔══╝  ██║     ██║██╔══╝  ██║         ██╔══██╗██╔══██║██║██║
+██║     ███████╗██║██║     ███████╗    ██║  ██║██║  ██║██║███████╗
+╚═╝     ╚══════╝╚═╝╚═╝     ╚══════╝    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚══════╝
+        ██████╗  █████╗ ██╗██╗██╗ ██████╗
+        ██╔══██╗██╔══██╗██║██║██║██╔═══██╗
+        ██████╔╝███████║██║██║██║██║   ██║
+        ██╔══██╗██╔══██║██║██║██║██║   ██║
+        ██║  ██║██║  ██║██║██║██║╚██████╔╝
+        ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝╚═╝ ╚═════╝
 
-Este proyecto reúne tres ejercicios fundamentales de algoritmos y estructuras de datos dentro de un solo programa Java, incluyendo:
+# 🔥 Proyecto: Algoritmos & Lista Dinámica en Java (Estilo Gamer / Cyber)
 
-🔁 Bubble Sort con conteo de intercambios
+**Autor:** Eliel David Rodríguez Villalobos  
+**Propósito:** Ejercicios de práctica (recuperación B1) — Bubble Sort (conteo de swaps), lista dinámica (removeAt, indexOf) y programa demostrativo con menú.
 
-🗑️ Eliminación por índice en una lista dinámica
+---
 
-🔎 Búsqueda con indexOf
+## 📌 Resumen rápido
 
-🖥️ Menú interactivo
+Este repositorio contiene:
 
-🧩 Código totalmente integrado
+- Implementación de **bubbleSortCountSwaps** (cuenta swaps al ordenar).  
+- Clase `MiLista` (arreglo dinámico con `add`, `removeAt`, `indexOf`, `print`).  
+- `ProgramaUnico.java` con un **menú interactivo** que demuestra las funciones.  
+- Diagramas Mermaid incluidos para visualización en GitHub.
 
-📊 Diagrama General del Proyecto
+---
+
+## 📂 Estructura sugerida del repo
+
+```
+/
+├─ ProgramaUnico.java
+├─ README.md       <-- este archivo
+└─ LICENSE (opcional)
+```
+
+---
+
+## 🧠 Diagrama general (Mermaid)
+
+> En GitHub el bloque Mermaid se renderiza automáticamente. Si tu visor no lo soporta, verás el texto plano.
+
+```mermaid
 flowchart TD
     A[ProgramaUnico.java] --> B[bubbleSortCountSwaps()]
     A --> C[Clase interna MiLista]
@@ -21,19 +52,31 @@ flowchart TD
     C --> C2[removeAt()]
     C --> C3[indexOf()]
     C --> C4[print()]
-    A --> D[main() con menú interactivo]
+    A --> D[main() con pruebas]
 
     B --> E[Ordenamiento Bubble Sort]
     C2 --> F[Eliminación por índice]
     C3 --> G[Búsqueda lineal]
+```
 
-🔁 1. Bubble Sort con conteo de swaps
+---
 
-Método:
+## 🔁 1) Bubble Sort — `bubbleSortCountSwaps`
 
+**Firma:**
+```java
 public static int bubbleSortCountSwaps(int[] arr)
+```
 
-🧠 Diagrama del proceso Bubble Sort
+**Descripción:**
+
+- Ordena el arreglo de forma ascendente usando Bubble Sort.
+- Cuenta y retorna el número de swaps (intercambios) realizados.
+- Optimizado para detenerse si ya está ordenado (bandera `cambio`).
+
+**Diagrama del proceso (Mermaid):**
+
+```mermaid
 flowchart LR
     A[Inicio] --> B{¿i < n-1?}
     B -->|Sí| C{¿arr[j] > arr[j+1]?}
@@ -46,21 +89,21 @@ flowchart LR
     G -->|Sí| I[Siguiente i]
     I --> B
     B -->|No| H
+```
 
+---
 
-📌 Funcionalidad:
+## 🗂 2) `MiLista` — Lista dinámica (tipo ArrayList casero)
 
-Ordena un arreglo ascendente.
+**Características principales:**
 
-Cuenta cuántos intercambios fueron necesarios.
+- Arreglo interno `int[] arr` con crecimiento automático (doble tamaño).
+- Control manual de `size`.
+- Métodos: `add`, `removeAt`, `indexOf`, `print`.
 
-Optimizado con detección de ordenamiento anticipado.
+**Diagrama de la clase (Mermaid):**
 
-🗂️ 2. Implementación de Lista Dinámica (MiLista)
-
-Representa una estructura tipo ArrayList hecha manualmente.
-
-📦 Diagrama Interno de MiLista
+```mermaid
 classDiagram
     class MiLista {
         - int[] arr
@@ -70,47 +113,52 @@ classDiagram
         + indexOf(int)
         + print()
     }
+```
 
-🗑️ removeAt(int index)
+---
 
-Método:
+### 🗑 `removeAt(int index)`
 
+**Firma:**
+```java
 public int removeAt(int index)
+```
 
+**Comportamiento:**
 
-📌 Acciones:
+- Valida `index` (lanza `IndexOutOfBoundsException` si es inválido).
+- Guarda el valor a eliminar.
+- Mueve todos los elementos posteriores una posición a la izquierda.
+- Decrementa `size`.
+- Retorna el valor eliminado.
 
-Verifica índice válido.
+**Diagrama removeAt (Mermaid):**
 
-Guarda el valor eliminado.
-
-Recorre elementos hacia la izquierda.
-
-Reduce size.
-
-🔧 Diagrama del proceso removeAt
+```mermaid
 flowchart TD
-    A[removeAt(index)] --> B{¿index válido?}
-    B -->|No| C[Lanzar IndexOutOfBoundsException]
+    A[removeAt(index)] --> B{index válido?}
+    B -->|No| C[throw IndexOutOfBoundsException]
     B -->|Sí| D[Guardar valor eliminado]
-    D --> E[Recorrer elementos una posición a la izquierda]
+    D --> E[Mover elementos a la izquierda]
     E --> F[size--]
     F --> G[Retornar eliminado]
+```
 
-🔎 3. indexOf(int value)
+---
 
-Método:
+### 🔎 `indexOf(int value)`
 
+**Firma:**
+```java
 public int indexOf(int value)
+```
 
+- Recorre la lista y devuelve el índice de la primera aparición.
+- Devuelve `-1` si no encuentra el valor.
 
-Funcionalidad:
+**Diagrama indexOf (Mermaid):**
 
-Busca la primera aparición de un valor.
-
-Retorna -1 si no existe.
-
-🔍 Diagrama del proceso indexOf
+```mermaid
 flowchart TD
     A[indexOf(value)] --> B[Recorrer arreglo]
     B --> C{¿arr[i] == value?}
@@ -118,15 +166,29 @@ flowchart TD
     C -->|No| E{¿Fin del arreglo?}
     E -->|No| B
     E -->|Sí| F[Retornar -1]
+```
 
-🖥️ Menú Interactivo
+---
+
+## 🧾 Menú del programa
+
+El `main` incluye un menú simple para ejecutar las pruebas:
+
+```
 ===== MENÚ =====
 1. bubbleSortCountSwaps
 2. removeAt
 3. indexOf
 0. Salir
+```
 
-👨‍💻 CÓDIGO COMPLETO (TODO EL MAIN Y TODAS LAS CLASES)
+---
+
+## 💻 Código completo — `ProgramaUnico.java`
+
+> Copia/pega este archivo en tu proyecto:
+
+```java
 import java.util.Scanner;
 
 public class ProgramaUnico {
@@ -276,7 +338,54 @@ public class ProgramaUnico {
         sc.close();
     }
 }
+```
 
-🚀 Cómo ejecutar
+---
+
+## ✅ Ejemplo de salida esperada
+
+```
+Arreglo ordenado: 1, 2, 3
+Swaps realizados: 3
+
+Eliminado: 9
+Lista: 3, 6, 12, 15
+
+indexOf(4) = 0
+indexOf(10) = 3
+indexOf(7) = -1
+```
+
+---
+
+## 📌 Cómo compilar y ejecutar
+
+```bash
 javac ProgramaUnico.java
 java ProgramaUnico
+```
+
+---
+
+## 🛠 Recomendaciones / Mejoras futuras
+
+- Añadir `contains`, `insertAt`, o `clear` a `MiLista`.  
+- Implementar pruebas unitarias (JUnit).  
+- Separar en múltiples clases/archivos para claridad (`MiLista.java`, `BubbleSort.java`, `Main.java`).  
+- Incluir diagramas UML como imágenes (PNG/SVG) en `/docs`.
+
+---
+
+## 📜 Licencia (opcional)
+
+Si quieres, agrego la **licencia MIT** al repositorio. ¿La incluyo?
+
+---
+
+## ☠️ Estilo Hacker — Extras opcionales
+
+Si deseas que convierta este README en una **versión "gamer"** separada (`README.gamer.md`) con más ASCII art, colores HTML (no siempre soportados en GitHub) y secciones estilo terminal, dime y la genero.
+
+---
+
+¿Listo para que lo suba a tu repo (te lo pego en un archivo `README.md`) o quieres que también añada la **LICENSE (MIT)** y algunos badges?
