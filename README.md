@@ -1,5 +1,3 @@
-🚀 T1 — PROYECTO 1 (El que me diste al inicio)
-
 ✅ EJERCICIO 1 — Ordenar Pares al Inicio e Impares al Final Usando Selection Sort
 
 ✔ Sin usar otra estructura
@@ -76,185 +74,73 @@ public static void main(String[] args) {
 ✔ Salida esperada:
 2 4 6 8 3 7 9
 
-Bubble Sort con conteo de intercambios
+✅ EJERCICIO 2 — Insertion Sort + Comparar Primer y Último
 
-Implementación manual de MiLista
+El programa debe:
 
-indexOf
+✔ Pedir n
+✔ Leer n números
+✔ Ordenar con Insertion Sort
+✔ Comparar primer vs último
+✔ Imprimir resultado
 
-removeAt
-
-Menú interactivo
-
-📌 (Ya lo generé y no lo repito para no saturar, pero si quieres lo vuelvo a incluir completo en un README).
-
-🚀 T2 — PROYECTO 2 (SinglyLinkedList + toArray + BubbleSort)
-
-Este es TOTALMENTE INDEPENDIENTE del T1.
-Aquí está TODO EL CÓDIGO COMPLETO con comentarios.
-
-📦 T2 — CÓDIGO COMPLETO
-⭐ Node.java
-// Nodo para la lista simplemente ligada
-public class Node {
-    int data;       // valor almacenado
-    Node next;      // referencia al siguiente nodo
-
-    public Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
-}
-
-⭐ SinglyLinkedList.java
-public class SinglyLinkedList {
-
-    private Node head;   // inicio de la lista
-    private int size;    // cantidad de nodos
-
-    public SinglyLinkedList() {
-        this.head = null;
-        this.size = 0;
-    }
-
-    // ============================================
-    // a) AGREGAR AL FINAL
-    // ============================================
-    public void addLast(int value) {
-        Node nuevo = new Node(value);
-
-        // Lista vacía
-        if (head == null) {
-            head = nuevo;
-        } else {
-            // Recorrer hasta el último nodo
-            Node actual = head;
-            while (actual.next != null) {
-                actual = actual.next;
-            }
-            actual.next = nuevo;
-        }
-
-        size++;
-    }
-
-    // ============================================
-    // b) REGRESAR EL TAMAÑO
-    // ============================================
-    public int size() {
-        return size;
-    }
-
-    // ============================================
-    // c) OBTENER UN NODO POR ÍNDICE
-    // ============================================
-    public int get(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Índice inválido: " + index);
-        }
-
-        Node actual = head;
-        for (int i = 0; i < index; i++) {
-            actual = actual.next;
-        }
-
-        return actual.data;
-    }
-
-    // ============================================
-    // d) IMPRIMIR LA LISTA
-    // ============================================
-    public void printList() {
-        Node actual = head;
-        while (actual != null) {
-            System.out.print(actual.data);
-            if (actual.next != null) System.out.print(", ");
-            actual = actual.next;
-        }
-        System.out.println();
-    }
-}
-
-⭐ Main.java (toArray + BubbleSort + Prueba)
-import java.util.*;
+⭐ Código Completo del Ejercicio 2
+import java.util.Scanner;
 
 public class Main {
 
-    // =====================================================
-    // Convertir lista a arreglo
-    // =====================================================
-    public static int[] toArray(SinglyLinkedList list) {
+    // =============== INSERTION SORT ===============
+    public static void insertionSort(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
 
-        int[] arr = new int[list.size()];
+            int key = arr[i];
+            int j = i - 1;
 
-        // Rellenar arreglo usando get(i)
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = list.get(i);
-        }
-
-        return arr;
-    }
-
-    // =====================================================
-    // Bubble Sort ascendente
-    // =====================================================
-    public static void bubbleSort(int[] arr) {
-        boolean cambio;
-
-        do {
-            cambio = false;
-
-            for (int i = 0; i < arr.length - 1; i++) {
-                if (arr[i] > arr[i + 1]) {
-
-                    // intercambiar
-                    int temp = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = temp;
-
-                    cambio = true;
-                }
+            // mover elementos mayores a la derecha
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
             }
-        } while (cambio);
+
+            arr[j + 1] = key;
+        }
     }
 
-    // =====================================================
-    // MAIN
-    // =====================================================
     public static void main(String[] args) {
 
-        // 1) Crear lista
-        SinglyLinkedList lista = new SinglyLinkedList();
+        Scanner sc = new Scanner(System.in);
 
-        // 2) Agregar temperaturas
-        lista.addLast(28);
-        lista.addLast(31);
-        lista.addLast(26);
-        lista.addLast(30);
-        lista.addLast(29);
+        System.out.print("Ingresa la cantidad de elementos: ");
+        int n = sc.nextInt();
 
-        // 3) Imprimir lista original
-        System.out.println("Lista original:");
-        lista.printList();
+        int[] arr = new int[n];
 
-        // 4) Convertir a arreglo
-        int[] arr = toArray(lista);
+        // Leer datos
+        System.out.println("Ingresa " + n + " números:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
 
-        // 5) Ordenar con Bubble Sort
-        bubbleSort(arr);
+        // Ordenar
+        insertionSort(arr);
 
-        // 6) Imprimir arreglo ordenado
-        System.out.println("Arreglo ordenado:");
-        for (int n : arr) {
-            System.out.print(n + " ");
+        // Mostrar arreglo ordenado
+        System.out.print("Arreglo ordenado: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
         }
         System.out.println();
+
+        // Comparar primer y último
+        int primero = arr[0];
+        int ultimo = arr[n - 1];
+
+        if (primero == ultimo) {
+            System.out.println("El primer y último elemento SON IGUALES.");
+        } else if (primero < ultimo) {
+            System.out.println("El primer elemento es MENOR que el último.");
+        } else {
+            System.out.println("El primer elemento es MAYOR que el último.");
+        }
     }
 }
-
-✔ Salida esperada del T2
-Lista original:
-28, 31, 26, 30, 29
-
-Arreglo ordenado:
-26 28 29 30 31
